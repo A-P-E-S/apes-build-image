@@ -60,6 +60,6 @@ RUN cat /git-setup.sh >> /root/.bashrc
 RUN rm /git-setup.sh
 
 # Squash everything together.
-# FROM scratch
-# COPY --from=build / /
+FROM scratch
+COPY --from=build / /
 ENV PATH="/usr/bin/node/bin:/root/.fly/bin:$PATH"
