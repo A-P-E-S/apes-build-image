@@ -54,6 +54,18 @@ RUN chmod u+x ./install-docker.sh && ./install-docker.sh && rm ./install-docker.
 COPY ./scripts/install-aws.sh ./
 RUN chmod u+x ./install-aws.sh && ./install-aws.sh && rm ./install-aws.sh
 
+# Install Java.
+COPY ./scripts/install-java.sh ./
+RUN chmod u+x ./install-java.sh && ./install-java.sh && rm ./install-java.sh
+
+# Install Android SDK.
+COPY ./scripts/install-android-sdk.sh ./
+RUN chmod u+x ./install-android-sdk.sh && ./install-android-sdk.sh && rm ./install-android-sdk.sh
+
+# Install Flutter.
+COPY ./scripts/install-flutter.sh ./
+RUN chmod u+x ./install-flutter.sh && ./install-flutter.sh && rm ./install-flutter.sh
+
 # Setup Git autocomplete and a nice prompt.
 COPY ./scripts/git-setup.sh /git-setup.sh
 RUN cat /git-setup.sh >> /root/.bashrc
@@ -62,4 +74,5 @@ RUN rm /git-setup.sh
 # Squash everything together.
 FROM scratch
 COPY --from=build / /
-ENV PATH="/usr/bin/node/bin:/root/.fly/bin:$PATH"
+ENV PATH="/usr/bin/node/bin:/root/.fly/bin:/java/bin:/android_sdk/cmdline-tools/latest/bin:/android_sdk/platform-tools:/flutter/bin:$PATH"
+ENV ANDROID_HOME=/android_sdk
