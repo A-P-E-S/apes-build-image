@@ -1,7 +1,10 @@
 #!/bin/sh
 
-# NOTE: Flutter doesn't currently offer an ARM build for Linux, so this script
-# assumes a x64 architecture.
+# NOTE: Flutter doesn't currently offer an ARM build for Linux, so we skip this
+# install if we're on arm64.
+if [ "$TARGETARCH" != "amd64" ]; then
+	exit 0
+fi
 
 FLUTTER_VERSION=3.16.8
 
