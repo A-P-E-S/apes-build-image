@@ -74,5 +74,5 @@ RUN rm /git-setup.sh
 # Squash everything together.
 FROM scratch
 COPY --from=build / /
-ENV PATH="/usr/bin/node/bin:/root/.fly/bin:/java/bin:/android_sdk/cmdline-tools/latest/bin:/android_sdk/platform-tools:/flutter/bin:$PATH"
+ENV PATH="/usr/bin/node/bin:/root/.cargo/bin:/root/.fly/bin:/java/bin:/android_sdk/cmdline-tools/latest/bin:/android_sdk/platform-tools:/flutter/bin:$PATH"
 ENV ANDROID_HOME=/android_sdk
