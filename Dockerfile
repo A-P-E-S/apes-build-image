@@ -18,6 +18,10 @@ RUN apt install -y \
 # Install Postgres client.
 RUN apt install -y postgresql-client
 
+# Install Doctl.
+COPY ./scripts/install-doctl.sh ./
+RUN chmod u+x ./install-doctl.sh && ./install-doctl.sh && rm ./install-doctl.sh
+
 # Install Rust.
 COPY ./scripts/install-rust.sh ./
 RUN chmod u+x ./install-rust.sh && ./install-rust.sh && rm ./install-rust.sh
@@ -25,10 +29,6 @@ RUN chmod u+x ./install-rust.sh && ./install-rust.sh && rm ./install-rust.sh
 # Install Node.
 COPY ./scripts/install-node.sh ./
 RUN chmod u+x ./install-node.sh && ./install-node.sh && rm ./install-node.sh
-
-# Install flyctl.
-COPY ./scripts/install-flyctl.sh ./
-RUN chmod u+x ./install-flyctl.sh && ./install-flyctl.sh && rm ./install-flyctl.sh
 
 # Install migrate.
 COPY ./scripts/install-migrate.sh ./
